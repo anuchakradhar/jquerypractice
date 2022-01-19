@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="itemdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="itemdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="employees" EntityType="itemdbModel.employee" />
+    <EntitySet Name="tbl_Item" EntityType="itemdbModel.tbl_Item" />
+    <EntitySet Name="floors" EntityType="itemdbModel.floor" />
+  </EntityContainer>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="JobType" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbl_Item">
+    <Key>
+      <PropertyRef Name="itemId" />
+    </Key>
+    <Property Name="itemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="floor">
+    <Key>
+      <PropertyRef Name="floor_id" />
+    </Key>
+    <Property Name="floor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="floor_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="area" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="rate" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+</Schema>

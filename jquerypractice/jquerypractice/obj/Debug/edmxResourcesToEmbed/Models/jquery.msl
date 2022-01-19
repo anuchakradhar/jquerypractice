@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="itemdbModelStoreContainer" CdmEntityContainer="itemdbEntities">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="itemdbModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="itemdbModel.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Item">
+      <EntityTypeMapping TypeName="itemdbModel.tbl_Item">
+        <MappingFragment StoreEntitySet="tbl_Item">
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="itemId" ColumnName="itemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="floors">
+      <EntityTypeMapping TypeName="itemdbModel.floor">
+        <MappingFragment StoreEntitySet="floor">
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="floor_name" ColumnName="floor_name" />
+          <ScalarProperty Name="floor_id" ColumnName="floor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

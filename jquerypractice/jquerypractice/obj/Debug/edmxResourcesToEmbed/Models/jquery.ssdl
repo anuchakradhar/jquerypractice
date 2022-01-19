@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="itemdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="150" />
+    <Property Name="Department" Type="varchar" MaxLength="150" />
+    <Property Name="JobType" Type="varchar" MaxLength="150" />
+    <Property Name="Salary" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="floor">
+    <Key>
+      <PropertyRef Name="floor_id" />
+    </Key>
+    <Property Name="floor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="floor_name" Type="varchar" MaxLength="50" />
+    <Property Name="area" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="rate" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbl_Item">
+    <Key>
+      <PropertyRef Name="itemId" />
+    </Key>
+    <Property Name="itemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="item_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="itemdbModelStoreContainer">
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="floor" EntityType="Self.floor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Item" EntityType="Self.tbl_Item" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

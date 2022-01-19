@@ -1,0 +1,114 @@
+﻿@model IEnumerable<jquerypractice.Models.tbl_Item>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    <table class="table-bordered" id="tableItem">
+        <tr>
+            <th style="width:100px">Item Id</th>
+            <th style="width:150px">Item Name</th>
+        </tr>
+    </table>
+</div>
+
+<br />
+<br />
+<hr />
+
+<input type="button" onclick="AddItem()" value="Add" /><br /><br />
+<table id="divCont">
+    <tr>
+        <td><input type="text" name="txtItem" style="width:200px;"/></td>
+    </tr>
+</table>
+
+<input type="button" value="Save" onclick="Save()" />
+
+
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadItem();
+    });
+
+    function LoadItem() {
+        var BindItem = "";
+        $.ajax({
+            async: true,
+            type: 'GET',
+            url: '/Dynamic/GetAllItems',
+            dataType: 'JSON',
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.success) {
+                    $.each(response.data,
+                        function (index, value) {
+                            BindItem += '<tr><td>' +
+                                value.itemId +
+                                '</td><td>' +
+                                value.item_name +
+                                '</td></tr>'
+                        });
+                    $('#tableItem').find('tr:gt(0)').remove();
+                    $('#tableItem').append(BindItem);
+                }
+            },
+            error: function () {
+                alert('There is problem to load Item.')
+            }
+        });
+    }
+
+    function GetDynamicItem() {
+        return '<td><input type="text" name="txtItem" style="width:200px;"/><input type="button" onclick="RemoveItem(this)" value="Remove" /></td>';
+    }
+
+    function AddItem() {
+        var tr = document.createElement('tr');
+        tr.innerHTML = GetDynamicItem();
+        document.getElementById("divCont").appendChild(tr);
+    }
+
+    function RemoveItem(div) {
+        document.getElementById("divCont").removeChild(div.parentNode.parentNode);
+    }
+
+    function resetItem() {
+        $('#divCont').each(function () {
+            var row = $(this);
+            row.find('tr td input').val("");
+            row.find('tr:gt(0)').remove();
+        });
+    }
+
+    function Save() {
+        var items = new Array();
+
+        $('#divCont tr').each(function () {
+            var row = $(this);
+            var item = {};
+            item.item_name = row.find("input:first-child").eq(0).val();
+            items.push(item);
+            //console.log(items);
+        });
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: '/Dynamic/InsertCustomers',
+            data: JSON.stringify(items),
+            contentType: 'application/json, charset= utf-8',
+            success: function (data) {
+                alert("Success");
+                LoadItem();
+                resetItem();
+            },
+            error: function () {
+                alert('Failed');
+            }
+        });
+    }
+</script>
